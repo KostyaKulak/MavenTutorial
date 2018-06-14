@@ -1,21 +1,25 @@
+package basicTests;
+
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import pages.GoogleSearchPage;
 
 public class SearchTest {
-    protected WebDriverDecorator webDriverDecorator;
-    protected GoogleSearchPage googleSearchPage;
+    private WebDriver driver;
+    private GoogleSearchPage googleSearchPage;
 
-    @BeforeClass(groups = {"pagetests","search"})
+    @BeforeClass(groups = {"pageTests","search"})
     public void loadState() {
-        webDriverDecorator = new WebDriverDecorator(new FirefoxDriver());
-        googleSearchPage = new GoogleSearchPage(webDriverDecorator);
+        driver = new FirefoxDriver();
+        googleSearchPage = new GoogleSearchPage(driver);
         googleSearchPage.open();
     }
 
-    @Test(groups = "pagetests")
+    @Test(groups = "pageTests")
     public void pageTest() {
         Assert.assertTrue(googleSearchPage.isExpectedPage("https://www.google.by"));
     }
@@ -26,8 +30,8 @@ public class SearchTest {
         googleSearchPage.search("hello");
     }
 
-    @AfterClass(groups = {"pagetests","search"})
+    @AfterClass(groups = {"pageTests","search"})
     public void afterClass() {
-        webDriverDecorator.quit();
+        driver.quit();
     }
 }

@@ -2,7 +2,7 @@
 <suite name="SmokeTests">
     <test name="Firefox Test">
         <classes>
-            <class name="SearchTest"/>
+            <class name="basicTests.SearchTest"/>
         </classes>
     </test>
 </suite>
